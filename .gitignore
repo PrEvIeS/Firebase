@@ -43,6 +43,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+google-services.json
+GoogleService-Info.plist
+
 # Flutter gen code
 /lib/generated
 *.g.dart

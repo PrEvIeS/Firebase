@@ -12,7 +12,16 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(S.of(context).home),
       ),
-      body: Text('Home'),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              'https://img.freepik.com/free-vector/hand-drawn-shopping-pattern-design_23-2149633578.jpg?w=2000',
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -41,7 +41,7 @@ class ApiException implements Exception {
 extension HandleExceptionExtensions<T> on Future<T> {
   Future<T> get onApiError {
     return onError<Exception>(
-          (exception, stackTrace) {
+      (exception, stackTrace) {
         throw ApiException.fromDioError(exception as DioException);
       },
       test: (exception) => exception is DioException,

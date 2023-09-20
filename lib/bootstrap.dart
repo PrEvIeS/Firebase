@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/config/base_config.dart';
 import 'package:flutter_template/core/bloc/bloc_observer.dart';
+import 'package:flutter_template/firebase_options.dart';
 import 'package:flutter_template/services/app_service/app_service.dart';
 import 'package:flutter_template/services/app_service/app_service_impl.dart';
 import 'package:flutter_template/services/crashlytics_service/crashlytics_service.dart';
@@ -24,7 +26,9 @@ Future<void> bootstrap({
     await Hive.openBox('settings');
 
     Logger.level = config!.logLevel;
-
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     DioClient.setup(config);
 
     GetIt.instance
@@ -58,6 +62,7 @@ Future<void> bootstrap({
 
     runApp(const App());
   }, (error, stack) {
+    throw error;
     GetIt.instance<CrashlyticsService>().recordException(error, stack);
   });
 }
