@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/services/firebase_service/firebase_auth.dart';
 import 'package:flutter_template/usecases/app/bloc/app_bloc.dart';
 import 'package:flutter_template/usecases/auth/auth_page.dart';
-import 'package:flutter_template/usecases/home/home_page.dart';
+import 'package:flutter_template/usecases/home/view/home_page.dart';
 
 class AppDirector extends StatelessWidget {
   const AppDirector({super.key});
@@ -16,7 +16,7 @@ class AppDirector extends StatelessWidget {
           stream: FirebaseAuthService.getUserStream(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return const HomePage();
+              return HomePage();
             } else {
               return const AuthPage();
             }
